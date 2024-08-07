@@ -9,7 +9,8 @@ const pdfDocument = require("pdfkit")
 const fs = require('fs')
 const hotel = require('../models/hotel')
 const doc = new pdfDocument()
-const uploader = require("../utils/multer")
+const uploader = require("../utils/multer");
+const { image } = require("../utils/cloudinary");
 const cloudinary = require('cloudinary').v2
 cloudinary.config({ 
     cloud_name: 'dati6fdzg', 
@@ -24,6 +25,8 @@ router.post("/register",uploader.single("image"), async (req, res) => {
     
     console.log(req.file)
   console.log(req.body)
+  const imgresponse = await cloudinary.uploader.upload(req.file.path)
+  const imgurl = imgresponse.url
    /* const { username, password,email,mobilenumber,address } = req.body;
     if (!username || !password || !email || !mobilenumber  ) {
       return res.status(400).json({status:"please enter all feilds" });
@@ -42,7 +45,7 @@ router.post("/register",uploader.single("image"), async (req, res) => {
     const saveUser = await newUser.save();
     */
     //res.status(200).json({ status: "user created successfully" ,data:{userId:userId,username:username}});
-    res.status(200).json({status:"successs changed"})
+    res.status(200).json(imgresponse)
   } catch (error) {
     res.status(400).json({ status: "some thing went wrong" });
     console.log(error)
