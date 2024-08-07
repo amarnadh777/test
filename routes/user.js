@@ -42,7 +42,7 @@ router.post("/register",uploader.single("image"), async (req, res) => {
     const saveUser = await newUser.save();
     */
     //res.status(200).json({ status: "user created successfully" ,data:{userId:userId,username:username}});
-    res.status(200).json({status:"successs"})
+    res.status(200).json({status:"successs changed"})
   } catch (error) {
     res.status(400).json({ status: "some thing went wrong" });
     console.log(error)
