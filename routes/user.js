@@ -24,7 +24,7 @@ router.post("/register",uploader.single("image"), async (req, res) => {
     
     console.log(req.file)
   console.log(req.body)
-    const { username, password,email,mobilenumber,address } = req.body;
+   /* const { username, password,email,mobilenumber,address } = req.body;
     if (!username || !password || !email || !mobilenumber  ) {
       return res.status(400).json({status:"please enter all feilds" });
     }
@@ -40,7 +40,9 @@ router.post("/register",uploader.single("image"), async (req, res) => {
     const userId = await uuid.v4()
     const newUser = new user({ username: username, password: hashpassword ,userId:userId , email:email,mobilenumber:mobilenumber,address:address,profileurl:imgurl });
     const saveUser = await newUser.save();
-    res.status(200).json({ status: "user created successfully" ,data:{userId:userId,username:username}});
+    */
+    //res.status(200).json({ status: "user created successfully" ,data:{userId:userId,username:username}});
+    res.status(200).json({status:"successs"})
   } catch (error) {
     res.status(400).json({ status: "some thing went wrong" });
     console.log(error)
